@@ -1,0 +1,30 @@
+// Liste des 25 vœux — modifie librement les textes ici si besoin.
+// "period" est une suggestion de fréquence de suivi : "daily", "weekly", "monthly", "yearly", "once"
+// Elle sert uniquement à préremplir le filtre, tu peux changer le filtre dans l'app à tout moment.
+const WISHES = [
+  { id: 1,  text: "Avoir un ordinateur", period: "once" },
+  { id: 2,  text: "Avoir un nouveau téléphone", period: "once" },
+  { id: 3,  text: "Apprendre la guitare", period: "weekly" },
+  { id: 4,  text: "Faire un date tout seul", period: "once" },
+  { id: 5,  text: "Monter jusqu'au Ting", period: "once" },
+  { id: 6,  text: "Apprendre à conduire", period: "weekly" },
+  { id: 7,  text: "Avoir une voiture", period: "once" },
+  { id: 8,  text: "Déménager, avoir mon propre chez moi", period: "once" },
+  { id: 9,  text: "Faire une date avec un inconnu", period: "once" },
+  { id: 10, text: "Emmener mes parents au resto", period: "once" },
+  { id: 11, text: "Faire une grande fête pour mes 25 ans", period: "once" },
+  { id: 12, text: "Faire une routine skin care", period: "daily" },
+  { id: 13, text: "Apprendre une nouvelle langue chaque année", period: "yearly" },
+  { id: 14, text: "Voyager à Séoul", period: "once" },
+  { id: 15, text: "Commencer à faire du sport", period: "weekly" },
+  { id: 16, text: "Soumettre des dossiers pour des bourses internationales (Canada, Japon, Corée du Sud)", period: "monthly" },
+  { id: 17, text: "Apprendre à coder", period: "weekly" },
+  { id: 18, text: "Lire 25 livres avant mes 25 ans", period: "monthly" },
+  { id: 19, text: "Faire une retraite technologique", period: "once" },
+  { id: 20, text: "Aller camper seul", period: "once" },
+  { id: 21, text: "Lire toutes les lettres de route des 21, 22, 23 et 25 ans", period: "yearly" },
+  { id: 22, text: "Créer mon entreprise spécialisée dans l'énergie", period: "monthly" },
+  { id: 23, text: "Finir le livre de soutenance pour mon L3", period: "weekly" },
+  { id: 24, text: "Apprendre à photographier en professionnel", period: "monthly" },
+  { id: 25, text: "Aller à un concert de BTS", period: "once" },
+];
