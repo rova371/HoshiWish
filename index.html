@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8B5CF6">
+<title>HoshiWish — 25 Vœux</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="icons/icon-192.png" alt="Logo HoshiWish" class="logo">
+    <div>
+      <h1>HoshiWish <span class="brand-sub">· 25 Vœux</span></h1>
+      <p class="subtitle" id="progressLabel">0 / 25 accomplis</p>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button class="tab-btn active" data-view="voeux">Vœux</button>
+  <button class="tab-btn" data-view="planning">Planning</button>
+  <button class="tab-btn" data-view="stats">Stats</button>
+  <button class="tab-btn" data-view="musique">Musique</button>
+</nav>
+
+<main>
+
+  <!-- VUE VŒUX -->
+  <section id="view-voeux" class="view active">
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="filters">
+      <select id="periodFilter">
+        <option value="all">Toutes fréquences</option>
+        <option value="daily">Quotidien</option>
+        <option value="weekly">Hebdomadaire</option>
+        <option value="monthly">Mensuel</option>
+        <option value="yearly">Annuel</option>
+        <option value="once">Un jour</option>
+      </select>
+
+      <select id="statusFilter">
+        <option value="all">Tous statuts</option>
+        <option value="todo">À faire</option>
+        <option value="progress">En cours</option>
+        <option value="done">Accompli</option>
+      </select>
+    </div>
+
+    <ul class="wish-list" id="wishList"></ul>
+  </section>
+
+  <!-- VUE PLANNING -->
+  <section id="view-planning" class="view">
+    <p class="section-intro">Retrouve tes vœux organisés selon leur fréquence de suivi.</p>
+    <div class="segmented" id="planningSegmented">
+      <button class="seg-btn active" data-period="daily">Jour</button>
+      <button class="seg-btn" data-period="weekly">Semaine</button>
+      <button class="seg-btn" data-period="monthly">Mois</button>
+      <button class="seg-btn" data-period="yearly">Année</button>
+    </div>
+    <ul class="wish-list" id="planningList"></ul>
+    <p class="empty-note" id="planningEmpty" hidden>Aucun vœu suivi à cette fréquence pour l'instant. Ouvre un vœu depuis l'onglet "Vœux" pour changer sa fréquence.</p>
+  </section>
+
+  <!-- VUE STATS -->
+  <section id="view-stats" class="view">
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <h2 class="section-title">Badges</h2>
+    <ul class="badges-grid" id="badgesGrid"></ul>
+  </section>
+
+  <!-- VUE MUSIQUE -->
+  <section id="view-musique" class="view">
+    <div class="music-panel">
+      <p class="music-intro">Choisis des musiques déjà présentes sur ton téléphone pour les écouter ici.</p>
+      <label class="pick-music-btn" for="musicPicker">+ Ajouter des musiques</label>
+      <input type="file" id="musicPicker" accept="audio/*" multiple hidden>
+
+      <ul class="playlist" id="playlist"></ul>
+
+      <div class="player" id="player" hidden>
+        <p class="now-playing" id="nowPlaying">—</p>
+        <audio id="audio" controls></audio>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Modale de détail / suivi d'un vœu -->
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal">
+    <button class="modal-close" id="modalClose">×</button>
+    <h2 id="modalTitle"></h2>
+
+    <div class="modal-tabs" id="modalTabs">
+      <button class="modal-tab-btn active" data-mtab="suivi">Suivi</button>
+      <button class="modal-tab-btn" data-mtab="journal">Journal</button>
+      <button class="modal-tab-btn" data-mtab="photos">Photos</button>
+    </div>
+
+    <!-- Suivi -->
+    <div class="modal-pane active" id="mpane-suivi">
+      <label for="modalStatus">Statut</label>
+      <select id="modalStatus">
+        <option value="todo">À faire</option>
+        <option value="progress">En cours</option>
+        <option value="done">Accompli</option>
+      </select>
+
+      <label for="modalPeriod">Fréquence de suivi</label>
+      <select id="modalPeriod">
+        <option value="daily">Quotidien</option>
+        <option value="weekly">Hebdomadaire</option>
+        <option value="monthly">Mensuel</option>
+        <option value="yearly">Annuel</option>
+        <option value="once">Un jour</option>
+      </select>
+
+      <label for="modalNote">Notes / avancement</label>
+      <textarea id="modalNote" rows="4" placeholder="Où j'en suis, prochaine étape..."></textarea>
+
+      <button class="save-btn" id="modalSave">Enregistrer</button>
+    </div>
+
+    <!-- Journal -->
+    <div class="modal-pane" id="mpane-journal">
+      <label for="journalEntry">Nouvelle entrée</label>
+      <textarea id="journalEntry" rows="3" placeholder="Écris ce que tu ressens, ce que tu as fait aujourd'hui pour ce vœu..."></textarea>
+      <button class="save-btn" id="journalAdd">Ajouter au journal</button>
+      <ul class="journal-list" id="journalList"></ul>
+    </div>
+
+    <!-- Photos -->
+    <div class="modal-pane" id="mpane-photos">
+      <label class="pick-music-btn photo-btn" for="photoPicker">+ Ajouter une photo</label>
+      <input type="file" id="photoPicker" accept="image/*" multiple hidden>
+      <div class="photo-grid" id="photoGrid"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Visionneuse photo plein écran -->
+<div class="modal-overlay" id="photoViewOverlay" hidden>
+  <img id="photoViewImg" class="photo-view-img" alt="Souvenir">
+  <button class="modal-close photo-view-close" id="photoViewClose">×</button>
+  <button class="photo-delete-btn" id="photoViewDelete">Supprimer cette photo</button>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
