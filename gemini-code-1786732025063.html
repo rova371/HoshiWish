@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoshiWish - 25 Vœux pour 25 Ans</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- En-tête / Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-circle">
+                    <img src="assets/images/logo.jpg" alt="HoshiWish Logo" id="app-logo" onerror="this.src='https://via.placeholder.com/150/4a2e68/ffffff?text=HoshiWish'">
+                </div>
+                <div class="title-area">
+                    <h1>HoshiWish ✨</h1>
+                    <p class="subtitle">25 Wishes for 25 Year Old</p>
+                </div>
+            </div>
+            <div class="overall-progress-bar-container">
+                <div class="progress-info">
+                    <span>Progression Globale</span>
+                    <span id="overall-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overall-progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Zone de contenu principal -->
+        <main class="main-content">
+            <!-- ONGLET 1: MES 25 VŒUX -->
+            <section id="tab-wishes" class="tab-content active">
+                <div class="section-title">
+                    <h2>🌸 Mes 25 Vœux</h2>
+                </div>
+                <div class="wishes-grid" id="wishes-grid">
+                    <!-- Généré dynamiquement par JavaScript -->
+                </div>
+            </section>
+
+            <!-- ONGLET 2: ORGANISATION & PLANNING -->
+            <section id="tab-planner" class="tab-content">
+                <div class="section-title">
+                    <h2>📅 Mon Organisation</h2>
+                </div>
+                <div class="timeframe-selector">
+                    <button class="tf-btn active" onclick="switchTimeframe('day')">Jour</button>
+                    <button class="tf-btn" onclick="switchTimeframe('week')">Semaine</button>
+                    <button class="tf-btn" onclick="switchTimeframe('month')">Mois</button>
+                    <button class="tf-btn" onclick="switchTimeframe('year')">Année</button>
+                </div>
+
+                <div class="add-task-bar">
+                    <input type="text" id="task-input" placeholder="Ajouter un objectif / tâche...">
+                    <select id="task-wish-link">
+                        <option value="">Lier à un vœu (Optionnel)</option>
+                    </select>
+                    <button class="btn-accent" onclick="addTask()">Ajouter</button>
+                </div>
+
+                <div class="tasks-list" id="tasks-list">
+                    <!-- Généré dynamiquement par JavaScript -->
+                </div>
+            </section>
+
+            <!-- ONGLET 3: LECTEUR MP3 -->
+            <section id="tab-music" class="tab-content">
+                <div class="section-title">
+                    <h2>🎵 Mon Lecteur MP3</h2>
+                    <label for="music-file-input" class="btn-primary custom-file-upload">
+                        + Importer mes MP3
+                    </label>
+                    <input type="file" id="music-file-input" accept="audio/*" multiple style="display:none;" onchange="handleMusicUpload(event)">
+                </div>
+
+                <div class="player-card">
+                    <div class="now-playing-disc" id="disc">
+                        <span>🎶</span>
+                    </div>
+                    <div class="now-playing-info">
+                        <h3 id="current-title">Aucune chanson sélectionnée</h3>
+                        <p id="current-artist">Importe tes musiques MP3 préférées !</p>
+                    </div>
+                    <div class="player-controls">
+                        <button class="control-btn" onclick="prevTrack()">⏮️</button>
+                        <button class="control-btn play-btn" id="play-pause-btn" onclick="togglePlay()">▶️</button>
+                        <button class="control-btn" onclick="nextTrack()">⏭️</button>
+                    </div>
+                    <audio id="audio-player"></audio>
+                </div>
+
+                <div class="playlist-container">
+                    <h3>Ma Playlist</h3>
+                    <ul id="playlist" class="playlist">
+                        <li class="empty-playlist">Aucune musique importée. Clique sur "+ Importer mes MP3".</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation du bas -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="switchTab('wishes')">
+                <span class="icon">✨</span>
+                <span class="label">25 Vœux</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('planner')">
+                <span class="icon">📅</span>
+                <span class="label">Planning</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('music')">
+                <span class="icon">🎵</span>
+                <span class="label">Musique</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

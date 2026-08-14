@@ -1,0 +1,8 @@
+hoshiwish/
+├── index.html
+├── README.md
+└── assets/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── app.js
